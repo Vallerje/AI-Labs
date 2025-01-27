@@ -1,4 +1,4 @@
-def is_prime(number):
+def prime_number_checker(number):
     if number <= 1:
         return False  
     for i in range(2, int(number ** 0.5) + 1): 
@@ -8,7 +8,7 @@ def is_prime(number):
 
 def next_prime(n):
     candidate = n + 1  
-    while not is_prime(candidate):  
+    while not prime_number_checker(candidate):  
         candidate += 1
     return candidate
 
