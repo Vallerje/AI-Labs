@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"path": "../.."
+	},
+	{
+		"name": "Arduinorp2040",
+		"path": "../Arduinorp2040"
+	}
+],
+  "settings": {
+    "files.associations": {
+      "ostream": "cpp",
+      "print": "cpp"
+    }
+  }
+}
