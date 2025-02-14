@@ -24,6 +24,7 @@ def pad_and_plot(ax, datasets, max_length, labels, colors, title, ylabel):
     ax.set_title(title)
     ax.set_ylabel(ylabel)
     ax.legend(loc="upper right")
+    
     ax.grid(True)
 
 
