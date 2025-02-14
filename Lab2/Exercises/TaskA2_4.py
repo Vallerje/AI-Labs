@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd 
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
 
 def TaskA2_4_I():
@@ -14,6 +15,7 @@ def TaskA2_4_I():
 #def TaskA2_4_II():
 
 
+#TaskA2_4_III
 def pad_and_plot(ax, datasets, max_length, labels, colors, title, ylabel):
     padded_datasets = [
         np.pad(data, (0, max_length - len(data)), mode='constant', constant_values=np.nan) for data in datasets
@@ -78,9 +80,47 @@ def TaskA2_4_III():
     plt.tight_layout()
     plt.show()
 
+#TaskA2_4_IV
+def normalize_column(dataframe, col_name):
+    col_min = dataframe[col_name].min()
+    col_max = dataframe[col_name].max()
+    dataframe[col_name] = (dataframe[col_name] - col_min) / (col_max - col_min)
+    return dataframe
 
+def standardize_column(dataframe, col_name):
+    col_mean = dataframe[col_name].mean()
+    col_std = dataframe[col_name].std()
+    dataframe[f"{col_name}_standardized"] = (dataframe[col_name] - col_mean) / col_std
+    return dataframe
+
+def TaskA2_4_IV():
+    df = pd.read_csv("Lab2/Data/aw_fb_data.csv")
+
+    df = normalize_column(df, "age")
+    df = normalize_column(df, "height")
+    df = normalize_column(df, "weight")
+
+    df = standardize_column(df, "steps")
+    df = standardize_column(df, "hear_rate")
+
+    df.to_csv("Lab2/Data/aw_fb_data_normalized_standardized.csv", index=False)
+
+
+#TaskA2_4_V
+def TaskA2_4_V():
+    df = pd.read_csv("Lab2/Data/aw_fb_data.csv")
+
+    train_data, temp_data = train_test_split(df, test_size=0.3, random_state=42)
+    val_data, test_data = train_test_split(temp_data, test_size=0.5, random_state=42)
+
+    print(f"Training set size: {len(train_data)}")
+    print(f"Validation set size: {len(val_data)}")
+    print(f"Test set size: {len(test_data)}")
 
 if __name__ == "__main__":
-    #TaskA2_4_I()
-    TaskA2_4_III()
+    TaskA2_4_I()
+
+    #TaskA2_4_III()
+    #TaskA2_4_IV()
+    #TaskA2_4_V()
 pass
