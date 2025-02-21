@@ -38,6 +38,19 @@ def load_mnist_data():
 
     return train_data, train_labels, test_data, test_labels
  
+def visualize_mse(mse_lr, mse_svm, mse_rf):
+    epochs = range(1, len(mse_lr) + 1)
+
+    plt.plot(epochs, mse_lr, label='LR', color='blue')
+    plt.plot(epochs, [mse_svm] * len(mse_lr), label='SVM', color='red')
+    plt.plot(epochs, [mse_rf] * len(mse_lr), label='RF', color='green')
+
+    plt.xlabel("Epoch")
+    plt.ylabel("MSE")
+    plt.legend(loc="upper right")
+    plt.title("MSE vs Epoch")
+    plt.show()
+
 class TaskA3_I:
 
     def linear_regression():
@@ -125,17 +138,9 @@ class TaskA3_I:
         return mse
 
 if __name__ == "__main__":
-    mse_lr = TaskA3_I.linear_regression()
-    mse_svm = TaskA3_I.svm_classification()
-    mse_rf = TaskA3_I.random_forest_classification()
 
-    epochs = range(1, len(mse_lr) + 1)
-    plt.plot(epochs, mse_lr, label="LR", color='blue')
-    plt.plot(epochs, [mse_svm] * len(mse_lr), label="SVM", color='red')
-    plt.plot(epochs, [mse_rf] * len(mse_lr), label="RF", color='green')
-
-    plt.xlabel('Epoch')
-    plt.ylabel('MSE')
-    plt.legend(loc='upper right')
-    plt.title('MSE vs Epoch for LR, SVM, and RF')
-    plt.show()
+    visualize_mse(
+        TaskA3_I.linear_regression(), 
+        TaskA3_I.svm_classification(), 
+        TaskA3_I.random_forest_classification() 
+    )
