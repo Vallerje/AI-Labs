@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 /Lab3/Data/MNIST
 /Lab4/Data/audio_data
+Lab4/Data/dataset/cifar-10-python.tar.gz
